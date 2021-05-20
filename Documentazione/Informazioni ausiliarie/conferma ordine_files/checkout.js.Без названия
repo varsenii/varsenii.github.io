@@ -1,0 +1,172 @@
+$(document).ready(function() {
+
+	$('#btn_conferma_ordine').click(function() {
+		
+		if(confermaOrdineValidation()){	
+
+			var id_indirizzo = $('#id_indirizzo').val();
+			var indirizzo = $('#indirizzo').val();
+			var civico = $('#civico').val();
+			var piano = $('#piano').val();
+			var localita = $('#localita').val();
+
+			var codice_fiscale = '';
+			if($('#codice_fiscale').existsWithValue()){
+				codice_fiscale = $('#codice_fiscale').val();
+			}
+
+			var nome = '';
+			if($('#nome').existsWithValue()){
+				nome = $('#nome').val();
+			}
+
+
+			var cognome = '';
+			if($('#cognome').existsWithValue()){
+				cognome = $('#cognome').val();
+			}
+
+			var cap = $('#cap').val();
+			var id_area = $('#id_area').val();
+			var nome_campanello = $('#nome_campanello').val();
+			var telefono = $('#telefono').val();
+			var salva_indirizzo = ($('#salva_indirizzo').is(':checked') ? 1 : 0);		
+
+			var note_cliente = $('#note_cliente').val();	
+			
+			var btn_el = this;
+			$(btn_el).hide();
+			
+			//loading
+			//$('#loading_confirm').html($('<div class="loading"></div>'));
+			$('#general-loading').show();
+
+			$.ajax({
+				type : "POST",
+				url : ABSOLUTE_SITE_URL + 'carrello/conferma_ordine_ajax/',
+				dataType : "json",
+				data : {
+					id_indirizzo : id_indirizzo,
+					indirizzo : indirizzo,
+					civico : civico,
+					piano : piano,
+					localita : localita,
+					cap : cap,
+					codice_fiscale: codice_fiscale,
+					nome: nome,
+					cognome: cognome,
+					id_area : id_area,
+					nome_campanello : nome_campanello,
+					telefono : telefono,
+					salva_indirizzo: salva_indirizzo,
+					note_cliente: note_cliente
+				},
+				success : function(res) {
+					$('#general-loading').hide();
+					if(res.esito) {
+						window.location = ABSOLUTE_SITE_URL+'carrello/consegna';
+						setTimeout(function() {
+							$(btn_el).show();
+						}, 2000);
+					}else{
+						//$('#loading_confirm').html('');
+						
+						$('#indirizzo_messaggio').html(res.messaggio);
+						$('#msg_validation').show(function() {
+							setTimeout(function() {
+								$('#msg_validation').hide();
+								$(btn_el).show();
+							}, 2000);
+						});
+					}
+				},
+				error : function() {
+					console.log('errore');
+				}
+			});
+		}
+
+	});
+}); 
+
+//validazione personalizzata
+function confermaOrdineValidation(){
+	var is_valid = true;
+
+	if($('#indirizzo').val() == '' || $('#indirizzo').val() == $('#indirizzo').attr('placeholder')){
+		$('#indirizzo').parent('.campo_container').addClass('is_required');
+		is_valid = false;
+		$('#indirizzo').keyup(function(){
+		if($(this).parent('.campo_container').hasClass('is_required')){
+			$(this).parent('.campo_container').removeClass('is_required');
+		}
+	});
+	}
+	
+	if($('#civico').val() == '' || $('#civico').val() == $('#civico').attr('placeholder')){
+		$('#civico').parent('.campo_container').addClass('is_required');
+		is_valid = false;
+		$('#civico').keyup(function(){
+			if($(this).parent('.campo_container').hasClass('is_required')){
+				$(this).parent('.campo_container').removeClass('is_required');
+			}
+		});
+	}
+
+	/*if($('#piano').val() == '' || $('#piano').val() == $('#piano').attr('placeholder')){
+		$('#piano').parent('.campo_container').addClass('is_required');
+		is_valid = false;
+		$('#piano').keyup(function(){
+			if($(this).parent('.campo_container').hasClass('is_required')){
+				$(this).parent('.campo_container').removeClass('is_required');
+			}
+		});
+	}*/
+		
+	if($('#localita').val() == '' || $('#localita').val() == $('#localita').attr('placeholder')){
+		$('#localita').parent('.campo_container').addClass('is_required');
+		is_valid = false;
+		$('#localita').keyup(function(){
+			if($(this).parent('.campo_container').hasClass('is_required')){
+				$(this).parent('.campo_container').removeClass('is_required');
+			}
+		});
+	}
+	
+	if($('#nome_campanello').val() == '' || $('#nome_campanello').val() == $('#nome_campanello').attr('placeholder')){
+		$('#nome_campanello').parent('.campo_container').addClass('is_required');
+		is_valid = false;
+		$('#nome_campanello').keyup(function(){
+			if($(this).parent('.campo_container').hasClass('is_required')){
+				$(this).parent('.campo_container').removeClass('is_required');
+			}
+		});
+	}
+	
+	if($('#telefono').val() == '' || $('#telefono').val() == $('#telefono').attr('placeholder')){
+		$('#telefono').parent('.campo_container').addClass('is_required');
+		is_valid = false;
+		$('#telefono').keyup(function(){
+			if($(this).parent('.campo_container').hasClass('is_required')){
+				$(this).parent('.campo_container').removeClass('is_required');
+			}
+		});
+	}		
+
+	if($('#codice_fiscale').existsWithValue()){
+		//alert(isCodiceFiscale($('#codice_fiscale').val()));
+		if($('#codice_fiscale').val() == '' || $('#codice_fiscale').val() == $('#codice_fiscale').attr('placeholder') || !isCodiceFiscale($('#codice_fiscale').val()) ){
+			$('#codice_fiscale').parent('.campo_container').addClass('is_required');
+			is_valid = false;
+			$('#codice_fiscale').keyup(function(){
+				if($(this).parent('.campo_container').hasClass('is_required')){
+					$(this).parent('.campo_container').removeClass('is_required');
+				}
+			});
+		}				
+	}
+
+	return is_valid;
+}
+
+

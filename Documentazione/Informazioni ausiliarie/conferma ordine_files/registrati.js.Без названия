@@ -1,0 +1,145 @@
+
+$(document).ready(function() {
+	$('#btn_registrati').click(function() {
+		CLBK_registrati();
+	});
+	
+	$('#btn_login').click(function() {
+		$('.btn-login').trigger('click');
+	});	
+});
+
+function CLBK_registrati() {
+
+	var nome = $('#nome').val();
+	var cognome = $('#cognome').val();
+	var email = $('#email').val();
+	var conferma_email = $('#conferma_email').val();
+	var password = $('#nuova_password').val();
+	var conferma_password = $('#conferma_password').val();
+	var id_area_preferita = $('#id_area_sel').val();
+	
+	if(myValidation()){
+		$.ajax({
+			type : "POST",
+			url : ABSOLUTE_SITE_URL + 'registrazione/registrati_ajax/',
+			dataType : "json",
+			data : {
+				nome : nome,
+				cognome : cognome,
+				email : email,
+				conferma_email : conferma_email,
+				password : password,
+				conferma_password : conferma_password,
+				id_area_preferita: id_area_preferita
+			},
+			success : function(res) {
+				$('#alert_message .content_msg').empty();
+				if (res.esito) {
+					$('#loginModal .modal-header button.close').trigger('click');
+				}
+
+				$('#alert_message .content_msg').html(res.messaggio);
+             	$('#alert_message').show(function(){
+              		setTimeout("$('#alert_message').hide();", 3000);
+              	});
+			},
+			error : function() {
+				console.log('errore');
+			}
+		});		
+	}
+
+}
+						                    
+//validazione personalizzata
+function myValidation(){
+	var is_valid = true;
+
+	if($('#nome').val() == '' || $('#nome').val() == $('#nome').attr('placeholder')){
+		$('#nome').parent('.campo_container').addClass('is_required');
+		is_valid = false;
+		$('#nome').keyup(function(){
+		if($(this).parent('.campo_container').hasClass('is_required')){
+			$(this).parent('.campo_container').removeClass('is_required');
+		}
+	});
+	}
+	
+	if($('#cognome').val() == '' || $('#cognome').val() == $('#cognome').attr('placeholder')){
+		$('#cognome').parent('.campo_container').addClass('is_required');
+		is_valid = false;
+		$('#cognome').keyup(function(){
+			if($(this).parent('.campo_container').hasClass('is_required')){
+				$(this).parent('.campo_container').removeClass('is_required');
+			}
+		});
+	}
+	
+	var email = $('#email').val();
+	if(email == '' || email == $('#email').attr('placeholder') || !isValidEmailAddress(email)){
+		$('#email').parent('.campo_container').addClass('is_required');
+		is_valid = false;
+		$('#email').keyup(function(){
+			if($(this).parent('.campo_container').hasClass('is_required')){
+				$(this).parent('.campo_container').removeClass('is_required');
+			}
+		});
+	}
+
+
+	var email_conferma = $('#conferma_email').val();
+	if(email_conferma == '' || email_conferma == $('#conferma_email').attr('placeholder') || email_conferma != email){
+		$('#conferma_email').parent('.campo_container').addClass('is_required');
+		is_valid = false;
+		$('#conferma_email').keyup(function(){
+			if($(this).parent('.campo_container').hasClass('is_required')){
+				$(this).parent('.campo_container').removeClass('is_required');
+			}
+		});
+	}
+	
+	var password = $('#nuova_password').val();
+	if(password == '' || password == $('#nuova_password').attr('placeholder')){
+		$('#nuova_password').parent('.campo_container').addClass('is_required');
+		is_valid = false;
+		$('#nuova_password').keyup(function(){
+			if($(this).parent('.campo_container').hasClass('is_required')){
+				$(this).parent('.campo_container').removeClass('is_required');
+			}
+		});
+	}
+	
+	var password_confirm = $('#conferma_password').val();
+	if(password_confirm == '' || password_confirm == $('#conferma_password').attr('placeholder') || password_confirm != password){
+		$('#conferma_password').parent('.campo_container').addClass('is_required');
+		is_valid = false;
+		$('#conferma_password').keyup(function(){
+			if($(this).parent('.campo_container').hasClass('is_required')){
+				$(this).parent('.campo_container').removeClass('is_required');
+			}
+		});
+	}
+		
+	if($('#privacy').is(':checked') == false){
+		$('#privacy').parent().addClass('check_required'); //nel label parent
+		is_valid = false;
+		$('#privacy').change(function(){
+			if($(this).parent().hasClass('check_required')){ //nel label parent
+				$(this).parent().removeClass('check_required');
+			}
+		});
+	}
+	
+	if($('#autorizza').is(':checked') == false){
+		$('#autorizza').parent().addClass('check_required'); //nel label parent
+		is_valid = false;
+		$('#autorizza').change(function(){
+			if($(this).parent().hasClass('check_required')){ //nel label parent
+				$(this).parent().removeClass('check_required');
+			}
+		});
+	}
+	
+	return is_valid;
+}

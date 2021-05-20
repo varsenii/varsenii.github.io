@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<script src="js/data.js"></script>
+<script src="js/structures.js"></script>
+<script src="js/fast_food_api.js"></script>
+<script src="js/script.js"></script>
+
+<title>FastFood - Ristoranti</title>
+
+</head>
+<body>
+<div id="page_wrapper">
+    <main class="central_container central_container--centred central_container--less_mw 
+    central_container--pd">
+        <h2 class="central_container__header">Il mio Account</h2>
+        <form id="profile_form" class="needs-validation" method="POST" novalidate>
+            <div class="form__feedback_placeholder form__feedback_placeholder--error form-group">
+                <i class="material-icons">error</i>L'mail inserita è già occupata
+            </div>
+            <div class="form-group">
+                <label for="firstName">Nome</label>
+                <input type="text" class="form-control" id="firstName" required
+                    pattern="[A-Za-z ]{3,32}">
+                <div class="invalid-feedback">
+                    <ul>
+                        <li>Deve contenere almeno 3 caratteri</li>
+                        <li>Non deve contenere caratteri numerici</li>
+                        <li>Non deve contenere caratteri speciali</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Cognome</label>
+                <input type="text" class="form-control" id="lastName" required
+                    pattern="[A-Za-z ]{3,32}">
+                <div class="invalid-feedback">
+                    <ul>
+                        <li>Deve contenere almeno 3 caratteri</li>
+                        <li>Non deve contenere caratteri numerici</li>
+                        <li>Non deve contenere caratteri speciali</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" required>
+                <div class="invalid-feedback">
+                    Inserire un'indirizzo email valido
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <div>
+                    <a id="modify_pwd_link" href="change_password.html">Modifica Password</a>
+                    <p id="password"></p>
+                </div>
+            </div>
+            <input class="btn btn-success w-100" type="submit" name="Save" value="Salva">
+            <div class="form_subsection">
+                <p>Vuoi eliminare il tuo account FastFood?</p>
+                <a href="#0" data-toggle="modal" data-target="#account_deleting_modal">
+                    Elimina il mio account
+                </a>
+                <div class="modal" id="account_deleting_modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    Cancelazione account
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                Sei sicuro di voler eliminare il tuo account?
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-info" data-dismiss="modal">Anulla</button>
+                                <button class="btn btn-danger" id="account_deleting_button">Elimina</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

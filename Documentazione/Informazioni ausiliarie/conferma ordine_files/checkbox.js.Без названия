@@ -1,0 +1,15 @@
+$(document).ready(function() {
+	$('.label_check').click(function(event){
+		var $input = $(this).find('input');
+		if($(this).hasClass('c_on')){
+		  	$(this).removeClass('c_on');
+		  	$input.removeAttr('checked').trigger('change');
+		}else{
+		    $(this).addClass('c_on');
+		    $(this).removeClass('check_required');
+		    $input.attr('checked', 'checked').trigger('change');
+		}
+		//setupLabel();
+		event.preventDefault()
+	});
+});

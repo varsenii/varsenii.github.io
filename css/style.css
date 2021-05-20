@@ -1,0 +1,466 @@
+html{
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,*::before,*::after{
+  box-sizing: inherit;
+}
+
+body{
+  height: 100%;
+  background-color: #f5f5f5;
+  /* font-family: museo-sans, "Proxima Nova", "Pluto Sans", Arail, sans-serif; */
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+#page_wrapper{
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  padding: 0 0 5rem 0;
+}
+
+.central_container{
+  background-color: white;
+  max-width: 50rem;
+}
+
+.central_container--less_mw {
+  max-width: 35rem;
+}
+
+.central_container--centred {
+  margin: 0 auto;
+}
+
+.central_container--pd {
+  padding: 2rem;
+}
+
+.central_container--trasparent {
+  background-color: transparent;
+}
+
+.central_container__header {
+  margin-bottom: 1.5rem;
+}
+
+#page_footer{
+  position: absolute;
+  bottom: 0;
+  height: 5rem;
+  right: 0;
+  left: 0;
+  text-align: center;
+  background-color: grey;
+  color: white;
+}
+
+.container_wrapper{
+  margin-top: 1rem;
+  /* display: flex;
+  justify-content: center; */
+}
+
+a{
+  text-decoration: none;
+}
+
+.nav-item{
+  text-align: right;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+/* Login/Registrazione */
+.modal{
+  overflow-y: auto;
+}
+.modal .modal-header{
+  background-color: #fa8188;
+  color: white;
+}
+.modal .close{
+  color:white;
+  opacity: unset;
+}
+.modal .modal-footer{
+  justify-content: center;
+}
+.modal .modal-footer>a{
+  color: #fa8188;
+  text-decoration: underline;
+}
+
+.form__feedback_placeholder {
+  display: none;
+  align-items: center;
+  padding: 0.6rem;
+  border-radius: 0.3rem;
+}
+
+.form__feedback_placeholder--success {
+  background-color: rgb(210, 250, 210);
+}
+
+.form__feedback_placeholder--error {
+  background-color: rgb(250,210,210);
+}
+
+.form__feedback_placeholder > i{
+  position: relative;
+  margin-right: 0.3rem;
+}
+
+.form__feedback_placeholder--error > i {
+  color: red;
+}
+
+.error_placeholder{
+  display: none;
+  align-items: center;
+  background-color: rgb(250,210,210);
+  padding: 0.6rem;
+  border-radius: 0.3rem;
+}
+.error_placeholder > i{
+  position: relative;
+  margin-right: 0.3rem;
+  color: red;
+}
+
+.fixed_centered{
+  display: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+/* New restaurant */
+
+.form_container{
+  padding: 1rem;
+  margin: 1rem auto;
+  background-color: white;
+  max-width: 80%;
+}
+
+.form_container h2{
+  text-align: center;
+}
+
+.form_container .actions{
+  display: flex;
+  justify-content: space-between;
+}
+.form_container .actions .btn{
+  min-width: 7rem;
+}
+
+#menu_selection{
+  display: none;
+}
+
+/* Restaurants page -----------------------------------------------------------------------------------------------*/
+
+#rest_summary{
+  padding: 0 2rem;
+  height: 5rem;
+  background-color: #716565;
+  color: #c69191;
+}
+
+#rest_number{
+  color: #f8f0e9;
+}
+
+.star_rating i.checked{
+  color: orange;
+}
+
+.rest_item{
+  margin: 2rem;
+  border: solid transparent 0.2rem;
+  padding: 1rem;
+}
+
+.rest_item:hover{
+  border: solid #fa8188 0.2rem;
+  background-color: #f5f5f5;
+}
+
+.rest_item h2{
+  color: black;
+}
+
+.rest_item:hover .rest_title{
+  color: #fa8188;
+}
+
+.rest_item a{
+  text-align: left;
+  color: #7a7a7a;
+}
+
+
+/* Restaurant page------------------------------------------------------------------------------------------ */
+#rest_wrapper{
+  width: 100%;
+}
+
+#rest_info > h4,div {
+  padding: 0.5rem 0.5rem;
+}
+
+#rest_info{
+  background-color: dimgrey;
+  color: white;
+}
+
+#rest_info>div:not(:first-child){
+  border-top: 0.1rem solid rgba(255,255,255,0.3);
+}
+
+#rest_main_info{
+  display: inline-block;
+}
+
+#rest_name{
+  margin-bottom: 0;
+}
+
+.like-btn{
+  float: right;
+}
+
+#opening_hours{
+  background-color: #c90f19;
+}
+#opening_hours label{
+  font-size: 1.2rem;
+}
+#opening_hours span{
+  font-size: 0.8rem;
+}
+
+.tabs-container{
+  width: 100%;
+  background-color: dimgrey;
+}
+.tabs-container a{
+  color: rgb(249,170,170);
+}
+
+#rest_info button {
+  min-width: 10rem;
+  margin: 0 auto;
+  color: #495057;
+  background-color: white;
+}
+
+  /* Menu section */ 
+#inner_container{
+  width: 100%;
+  padding: 1em 1em;
+  background-color: white;
+  color: rgb(230,132,136);
+}
+#menu a{
+  display: inline-block;
+  width: 100%;
+  color: rgb(230,132,136);
+}
+
+#search_bar{
+  margin-bottom: 2em;
+}
+
+#search_results{
+  display: none;
+}
+
+#search_results a{
+  display: inline-block;
+  width: 100%;
+  color: rgb(230,132,136);
+}
+
+.category{
+  padding: 0.8rem 0;
+  border-bottom: solid 0.13em rgb(242,242,242);
+}
+
+.category>a>i{
+  float: right;
+}
+.menu_item{
+  border-top: solid 0.15em transparent;
+  border-right: solid 0.15em transparent;
+  border-left: solid 0.15em transparent;
+  border-bottom: solid 0.15em rgb(242,242,242);
+}
+.menu_item.open{
+  border-color: rgb(113,101,101);
+}
+.menu_item:hover{
+  border: solid 0.15em rgb(113,101,101); 
+}
+
+.item_header{
+  display: flex;
+  position: relative;
+  padding: 1em;
+  padding-right: 3em;
+}
+.menu_item.open .item_header{
+  border-bottom: solid 0.15em rgb(242,242,242);
+}
+
+.item_photo_wrapper{
+  margin-right: 1em;
+  width: 4em;
+  height: 4em;
+}
+.item_photo{
+  max-width: 100%;
+  height: auto;
+}
+.popover{
+  max-width: 80%;
+}
+.item_preview{
+  max-width: 100%;
+}
+
+.item_price{
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.item_options div{
+  padding: 1em;
+}
+div.ingredients>ul{
+  padding-left: 0;
+}
+.ingredient{
+  list-style-type: none;
+  display: inline-block;
+  padding: 0.3em;
+  margin: 0.5em 0.5em 0.5em 0;
+  background-color: #86c06a;
+  color: white;
+  border: solid 0.1em white;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+.removed_ingredient{
+  background-color: #d13239;
+  text-decoration: line-through;
+}
+
+.item_footer{
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(113,101,101);
+  margin-bottom: -1px;
+}
+
+#cart{
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  background-color: white;
+}
+
+#cart>h4{
+  background-color: rgb(250,129,136);
+  color: white;
+}
+
+/* Recensioni */
+/* .review{
+  display: flex;
+} */
+
+/* .review>div:first-child{
+  display: flex;
+} */
+.review>div{
+  display: inline-flex;
+  width: 50%;
+}
+.review_rating{
+  float: right;
+}
+
+/* Account Page ------------------------------------------------------------------------------------------- */
+
+#modify_pwd_link{
+  float: right;
+}
+
+.form_subsection {
+  margin-top: 1.5rem;
+  border-top: 0.05rem solid #c5ccd3;
+  padding-top: 1rem;
+}
+
+.form_subsection p {
+  margin-bottom: 0px;
+}
+
+/* ________________________________________________________________________________________________________ */
+
+.bg_image {
+  background-image: url("../img/food.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* margin-top: 5rem; */
+ }
+
+
+/* Desctop */
+
+@media screen and (min-width: 768px){
+
+  #main{
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .form_container{
+    width: 60%;
+  }
+
+  .ingredients>h4{
+    display: inline;
+  }
+  #cart{
+    position: sticky;
+    top: 0;
+  }
+}
+
+@media screen and (min-width: 992px){
+
+  .form_container{
+    width: 40%;
+  }
+
+  .container_wrapper{
+    width: 60vw;
+  }
+}
+
+
+

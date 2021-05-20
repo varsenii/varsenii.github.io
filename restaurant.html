@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="it">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+
+<link rel="stylesheet" href="css/style.css">
+
+<script src="js/data.js"></script>
+<script src="js/structures.js"></script>
+<script src="js/fast_food_api.js"></script>
+<script src="js/script.js"></script>
+
+<title>FastFood - Ristoranti</title>
+
+</head>
+<body>
+<div id="page_wrapper" >
+    <div class="row no-gutters">
+        <main id="rest_wrapper" class="col-12 col-md-8 central_container">
+            <section id="rest_info">
+                <div>
+                    <div id="rest_main_info">
+                        <h4 id="rest_name"></h4>
+                        
+                    </div>
+                    <div class="like-btn">
+                        <i class="far fa-heart"></i>
+                    </div>
+                </div>
+                <div id="opening_hours" class="d-flex justify-content-center align-items-center">
+                    <div>NON DISPONIBILE</div>&nbsp;
+                </div>
+                <div class="row no-gutters" id="address">
+                    <label class="col-3">Indirizzo</label>
+                    <div class="col-9"></div>
+                </div>
+                <div class="row no-gutters" id="telephone">
+                    <label class="col-3">Telefono</label>
+                    <div class="col-9"></div>
+                </div>
+                <div class="row no-gutters" id="vouchers">
+                    <label class="col-3">Buoni pasto</label>
+                    <div class="col-9"></div>
+                </div>
+                <div class="row no-gutters" id="promo">
+                    <label class="col-3">Promo</label>
+                    <div class="col-9">Non ci sono promizioni attive</div>
+                </div>
+                <div class="row no-gutters" id="delivery">
+                    <label class="col-3">Consegna</label>
+                    <div class="col-3"></div>
+                    <div class="col-3"></div>
+                    <div class="col-3"></div>
+                    <div class="col-3"></div>
+                </div>
+                <nav class='tabs-container'>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active">Menù</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reviews.html">Recensioni</a>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+            <section id="inner_container">
+                <div class="input-group" id="search_bar">
+                    <input type="text" class="form-control" id="item_serch" placeholder="Cerca un piatto">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="search_results"></div>
+                <div id="menu"></div>
+            </section>
+        </main>
+        <section id="cart" class="col-md-4">
+            <h4>
+                Carello
+            </h4>
+            <div id="cart_content">
+                Carello è vuoto
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
