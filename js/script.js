@@ -68,7 +68,7 @@ function loadLocalData() {
 function prepareRestaurantPage() {
   var restId = Session.getCurrentRestaurant();
   loadRestInfo(restId);
-  loadRestMenu(restId, options = true);
+  loadRestMenu(restId, removableItems = false, options = true);
   fill_up_shopping_cart();
 }
 
@@ -116,7 +116,7 @@ function loadRestInfo(restId){
   }
 }
 
-function loadRestMenu(restId, options){
+function loadRestMenu(restId, removableItems = false, options = false){
   var menu_items = FastFoodAPI.getProducts(FastFoodAPI.getRestaurant(restId).menu);
   var category_items_map = new Map();
 
@@ -141,7 +141,7 @@ function loadRestMenu(restId, options){
     
     let collapsible_content = `<div class="item_container collapse" id="${category_id}-collapsible">`;
     for(let item of category_items_map.get(category)){
-      collapsible_content += getItemBox(item, options);
+      collapsible_content += getItemBox(item, removableItems, options);
     }
     collapsible_content += "</div>";
     
@@ -217,7 +217,7 @@ function get_rest_review_number(rest_id){
     return review_n;
 }
 
-function getItemBox(item, removable = false, options = false){
+function getItemBox(item, removableItem = false, options = false){
   var item_img_src = item.foto ? item.foto : "img/menu_item_placeholder.svg";
   var ingredients = FastFoodAPI.getIngredients(item.ingredienti);
   var ingredient_names = [];
@@ -232,24 +232,29 @@ function getItemBox(item, removable = false, options = false){
     ingredient_ul += "</ul>";
   }
 
-  var removeButton =
-  '<div class="material-cons">remove</div>'
+  var removeButtonDiv = `
+  <button type="button" class="btn btn-info btn-floating">
+    <i class="material-icons">remove_circle</i>
+  </button>`;
 
   var itemBox = 
   `<div class="menu_item close_menu_item" data-id="${item.id}">
     <a href="#collapsible-${item.id}" data-toggle="collapse">
-      <div class="item_header">
-        <div class="item_photo_wrapper" data-toggle="popover" data-trigger="hover"
+      <div class="item_header row">
+        <div class="item_photo_wrapper col-2" data-toggle="popover" data-trigger="hover"
         data-content='<img class="item_preview" src="${item_img_src}">'>
           <img class="item_photo" src="${item_img_src}">
         </div>
-        <div class="item_desc">
+        <div class="item_desc col-8">
           <span>${item.categoria}</span>
           <h3>${item.nome}</h3>
           <p>${ingredient_names.join(", ")}</p>
         </div>
-        <div class="item_price">
-          ${item.prezzo} &euro;
+        <div class="col-2 menu_item_additional_column">
+          <div class="item_price">
+            ${item.prezzo} &euro;
+          </div>
+          ${removableItem ? removeButtonDiv : ""}
         </div>
       </div>
     </a>`;
@@ -353,7 +358,7 @@ function prepareRestManagementPage() {
   if (Session.isRestaurateur()) {
     restId = Session.getRestaurantId();
     loadRestInfo(restId);
-    loadRestMenu(restId, options = false);
+    loadRestMenu(restId, removableItems = true, options = false);
     $("#modify_rest_info").click(function() {
       location.href = "rest_info_modify.html";
     })
